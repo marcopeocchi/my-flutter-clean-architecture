@@ -12,3 +12,9 @@
 ## Architectural scheme
 
 ![uml](./uml.svg)
+
+## Code generation
+
+```sh
+flutter packages pub run build_runner watch --delete-conflicting-outputs
+```
