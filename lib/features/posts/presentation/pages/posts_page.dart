@@ -45,33 +45,36 @@ class _PostsPageState extends State<PostsPage> {
       appBar: AppBar(
         title: const Text('Posts'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Observer(
-          builder: ((context) {
-            if (store.error != null) {
-              return FailureWidget(failure: store.error!);
-            }
-            if (store.state == StoreState.initial) {
-              return const Text('initial');
-            }
-            if (store.state == StoreState.loading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (store.state == StoreState.loaded) {
-              return ListView(
-                children: store.posts!
-                    .map((post) => Card(
-                          child: ListTile(
-                            title: Text(post.title),
-                            subtitle: Text(post.body),
-                          ),
-                        ))
-                    .toList(),
-              );
-            }
-            return const Text('Something went terribily wrong');
-          }),
+      body: RefreshIndicator(
+        onRefresh: () => store.getAllPosts(),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Observer(
+            builder: ((context) {
+              if (store.error != null) {
+                return FailureWidget(failure: store.error!);
+              }
+              if (store.state == StoreState.initial) {
+                return const Text('initial');
+              }
+              if (store.state == StoreState.loading) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (store.state == StoreState.loaded) {
+                return ListView(
+                  children: store.posts!
+                      .map((post) => Card(
+                            child: ListTile(
+                              title: Text(post.title),
+                              subtitle: Text(post.body),
+                            ),
+                          ))
+                      .toList(),
+                );
+              }
+              return const Text('Something went terribily wrong');
+            }),
+          ),
         ),
       ),
     );
