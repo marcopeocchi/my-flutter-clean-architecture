@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:dio_logging_interceptor/dio_logging_interceptor.dart';
 import 'package:get_it/get_it.dart';
 import 'package:my_flutter_clean_architecture/features/posts/data/datasources/posts_remote_datasource.dart';
 import 'package:my_flutter_clean_architecture/features/posts/data/repositories/posts_repository_impl.dart';
@@ -21,6 +22,13 @@ class DependencyInjector {
 
     sl.registerLazySingleton(() => PostsRemoteDatasource(sl()));
 
-    sl.registerLazySingleton(() => Dio());
+    sl.registerLazySingleton(
+      () => Dio()
+        ..interceptors.add(
+          DioLoggingInterceptor(
+            level: Level.headers,
+          ),
+        ),
+    );
   }
 }
