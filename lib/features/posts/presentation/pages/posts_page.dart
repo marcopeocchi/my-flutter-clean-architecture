@@ -55,7 +55,7 @@ class _PostsPageState extends State<PostsPage> {
                 return FailureWidget(failure: store.error!);
               }
               if (store.state == StoreState.initial) {
-                return const Text('initial');
+                return const Text('Such empty...');
               }
               if (store.state == StoreState.loading) {
                 return const Center(child: CircularProgressIndicator());
