@@ -79,4 +79,10 @@ class _PostsPageState extends State<PostsPage> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    disposers.map((disposer) => disposer());
+    super.dispose();
+  }
 }
