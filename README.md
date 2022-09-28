@@ -6,7 +6,7 @@
 |---------------------|---------------------|
 | HTTP Client         | Retrofit            |
 | State management    | MobX + MobX Flutter |
-| LocalDB             | Hive                |
+| LocalDB             | SQLite              |
 | Dependency Injector | GetIt               |
 
 ## Architectural scheme
