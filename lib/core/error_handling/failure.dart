@@ -18,7 +18,15 @@ abstract class Failure extends Equatable {
 class RestApiFailure extends Failure {
   const RestApiFailure({
     super.code = "REST_API_FAILURE",
-    super.message = "Something went wrong when fetching data from API",
+    super.message = "Something went wrong while fetching data from API",
+    super.severity = "HIGH",
+  });
+}
+
+class LocalCacheFailure extends Failure {
+  const LocalCacheFailure({
+    super.code = "LOCAL_CACHE_FAILURE",
+    super.message = "Something went wrong while fetching data from local DB",
     super.severity = "HIGH",
   });
 }

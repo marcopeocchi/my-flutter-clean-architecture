@@ -5,6 +5,7 @@ import 'package:my_flutter_clean_architecture/injector.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await DependencyInjector.init();
   runApp(const MyApp());
 }
